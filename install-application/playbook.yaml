@@ -1,15 +1,15 @@
- - name: install ngnix and start service
+ - name: install nginx and start service
    hosts: frontend
    become: true
    tasks:
-    - name: installing ngnix
+    - name: installing nginx
       ansible.builtin.package:
-        name: ngnix
+        name: nginx
         state: present
 
     - name: starting services
       ansible.builtin.service:
-        name: ngnix
+        name: nginx
         state: started
         enabled: yes
 
