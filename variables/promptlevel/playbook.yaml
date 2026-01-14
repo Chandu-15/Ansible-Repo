@@ -10,9 +10,7 @@
       private: false
 
    tasks:
-    - name: Print Course Info
-      ansible.builtin.debug:
-        msg: "username is {{ username }} and password is {{ password }}"
-      private: false  
-        
+      - name: Print Course Info
+        ansible.builtin.debug:
+          msg: "username is {{ username }} and password is {{ password }}"        
 
