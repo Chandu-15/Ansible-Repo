@@ -4,8 +4,8 @@
    tasks:
      - name: installing multiple packages with loop
        ansible.builtin.package:
-       - name: "{{ item }}"
-         state: latest
+         - name: "{{ item }}"
+           state: latest
        loop:
         - nginx
         - mysql
