@@ -27,7 +27,7 @@
         type: A
         record: "{{ item .item }}.{{ domain_name }}"
         value: "{ item.instances[0].private_ip_address }"
-        over_write: true
+        overwrite: true
       loop: "{{ ec2_output.results }}"
     - name: create r53 record 
       amazon.aws.route53:
@@ -37,7 +37,7 @@
         type: A
         record: "{{ domain_name }}"
         value: "{{ item.instances[0].public_ip_address }}"
-        over_write: true
+        overwrite: true
         when: item.item == "frontend"
       loop: "{{ ec2_output.results }}"
     
