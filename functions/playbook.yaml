@@ -1,8 +1,13 @@
  - name: gather facts
    hosts: local
    connection: local
+   vars:
+    technologies: devops,ansible,python
    tasks:
     - name: default variables
       ansible.builtin.debug:
         msg: "Hello, {{ name | default('chandana') }}"
+    - name: convert string to list
+      ansible.builtin.debug:
+        msg: "technologies are {{ technologies | split(',') }}"
        
