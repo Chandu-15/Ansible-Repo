@@ -13,6 +13,8 @@
         value: payment
       - key: env
         value: dev
+    name: chandana
+    gmail:REbbaChandana@gmail.com
    tasks:
     - name: default variables
       ansible.builtin.debug:
@@ -26,5 +28,13 @@
     - name: convert list to dict
       ansible.builtin.debug:
         msg: "Application are {{ Application | items2dict }}"
+    - name: convert to upper
+      ansible.builtin.debug:
+        msg: "Application are {{ name | upper }}"
+    - name: convert to lower
+      ansible.builtin.debug:
+        msg: "Application are {{ gmail | lower }}"
+           
+
     
        
