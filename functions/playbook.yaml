@@ -49,12 +49,19 @@
       ansible.builtin.debug:
         msg: "IP is {{ IP | ansible.utils.ipv4}}"
     - name: pipe command module
-      ansible.builtin.command: cat passwd | grep root
+      ansible.builtin.command: cat /etc/passwd | grep root
       register: command_output
       ignore_errors: true
-    - name: print output
+    - name: print command output
       ansible.builtin.debug:
         msg: "{{ command_output }}"
+    - name: pipe shell module
+      ansible.builtin.shell: cat /etc/passwd | grep root
+      register: shell_output
+    - name: print shell output
+      ansible.builtin.debug:
+        msg: "{{ shell_output }}"
+      
       
     
            
