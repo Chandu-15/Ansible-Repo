@@ -2,7 +2,17 @@
    hosts: local
    connection: local
    vars:
+    #convert string to list
     technologies: devops,ansible,python
+    #convert dictionary to list
+    tags:
+      App: payment
+      env: dev
+    Application:
+      - key: App
+        value: payment
+      - key: env
+        value: dev
    tasks:
     - name: default variables
       ansible.builtin.debug:
@@ -10,4 +20,11 @@
     - name: convert string to list
       ansible.builtin.debug:
         msg: "technologies are {{ technologies | split(',') }}"
+    - name: convert dict to list
+      ansible.builtin.debug:
+        msg: "tags are {{ tags| dict2item }}"
+    - name: convert list to dict
+      ansible.builtin.debug:
+        msg: "Application are {{ Application | items2dict }}"
+    
        
