@@ -1,6 +1,7 @@
  - name: user creation 
    hosts: local
    connection: local
+   become: yes
    tasks:
     - name: check user 
       ansible.builtin.command: id roboshop
@@ -11,6 +12,6 @@
         msg: "{{ user_output }}"
     - name: create user if not exists
       ansible.builtin.command: useradd roboshop
-      when: user_output.rc!=0
+      when: user_output.rc != 0
 
     
