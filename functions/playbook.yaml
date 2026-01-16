@@ -22,7 +22,7 @@
         msg: "technologies are {{ technologies | split(',') }}"
     - name: convert dict to list
       ansible.builtin.debug:
-        msg: "tags are {{ tags| dict2item }}"
+        msg: "tags are {{ tags| dict2items }}"
     - name: convert list to dict
       ansible.builtin.debug:
         msg: "Application are {{ Application | items2dict }}"
