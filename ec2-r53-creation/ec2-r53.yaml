@@ -14,5 +14,5 @@
         security_group: "{{ sg_id }}"
         tags:
           Name: "{{ item }}"
-        loop: "{{ instances }}"
+      loop: "{{ instances }}"
 
