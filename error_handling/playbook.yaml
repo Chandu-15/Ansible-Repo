@@ -1,0 +1,11 @@
+ - name: user creation 
+   hosts: local
+   connection: local
+   tasks:
+    - name: check user 
+      ansible.builtin.command: id roboshop
+      register: {{ user_output }}
+    - name: print output of user command 
+      ansible.builtin.debug:
+        msg: "{{ user_output }}"
+    
