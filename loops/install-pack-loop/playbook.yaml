@@ -1,6 +1,7 @@
  - name: gather facts
    hosts: local
    connection: local
+   become: yes
    tasks:
      - name: installing multiple packages with loop
        ansible.builtin.package:
