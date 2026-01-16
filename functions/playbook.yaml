@@ -14,7 +14,7 @@
       - key: env
         value: dev
     name: chandana
-    gmail:REbbaChandana@gmail.com
+    gmail: REbbaChandana@gmail.com
    tasks:
     - name: default variables
       ansible.builtin.debug:
@@ -30,10 +30,22 @@
         msg: "Application are {{ Application | items2dict }}"
     - name: convert to upper
       ansible.builtin.debug:
-        msg: "Application are {{ name | upper }}"
+        msg: "name in upper is: {{ name | upper }}"
     - name: convert to lower
       ansible.builtin.debug:
-        msg: "Application are {{ gmail | lower }}"
+        msg: "gmail in lowercase is: {{ gmail | lower }}"
+    - name: convert yaml to json so store file content into a variable
+      ansible.builtin.set_fact:
+         demo_yaml: "{{ lookup('file','demo.yaml') | from_yaml }}"
+    - name: convert yaml to json
+      ansible.builtin.debug:
+        msg: "converting to json, {{ demo_yaml | to_yaml }}"
+    - name: convert yaml to json and copy into file
+      ansible.builtin.copy:
+        dest: ./demo.json
+        content: "{{ demo_yaml | to_nice_json }}"
+      
+    
            
 
     
