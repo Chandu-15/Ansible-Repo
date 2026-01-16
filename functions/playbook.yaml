@@ -15,6 +15,7 @@
         value: dev
     name: chandana
     gmail: REbbaChandana@gmail.com
+    IP: 234-578-987-347
    tasks:
     - name: default variables
       ansible.builtin.debug:
@@ -44,6 +45,9 @@
       ansible.builtin.copy:
         dest: ./demo.json
         content: "{{ demo_yaml | to_nice_json }}"
+    - name: Check IP address is valid or not
+      ansible.builtin.debug:
+        msg: "IP is {{ IP | ansible.utils.ipv4}}"
       
     
            
