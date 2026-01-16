@@ -4,6 +4,8 @@
    vars:
     ami_id: "ami-0220d79f3f480ecf5"
     sg_id: "sg-0303a0e47aba592a6"
+    domain_name: "daws-86.shop"
+    zone_id: Z0773171IVO7FQBRS7PI
 
    tasks:
     - name: create ec2 instance
@@ -15,4 +17,28 @@
         tags:
           Name: "{{ item }}"
       loop: "{{ instances }}"
+      register: ec2_output
+    
+    - name: create r53 record 
+      amazon.aws.route53:
+        state: present
+        zone: "{{ zone_id }}"
+        ttl: 1
+        type: A
+        record: "{{ item .item }}.{{ domain_name }}"
+        value: "{ item.instances[0].private_ip_address }"
+        over_write: true
+        loop: "{{ ec2_output.results }}"
+    - name: create r53 record 
+      amazon.aws.route53:
+        state: present
+        zone: "{{ zone_id }}"
+        ttl: 1
+        type: A
+        record: "{{ item .item }}.{{ domain_name }}"
+        value: "{ item.instances[0].public_ip_address }"
+        over_write: true
+        when: item.item == "frontend"
+        loop: "{{ ec2_output.results }}"
+    
 
