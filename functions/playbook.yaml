@@ -54,13 +54,13 @@
       ignore_errors: true
     - name: print command output
       ansible.builtin.debug:
-        msg: "{{ command_output.stdout }}"
+        msg: "{{ command_output }}"
     - name: pipe shell module
       ansible.builtin.shell: cat /etc/passwd | grep root
       register: shell_output
     - name: print shell output
       ansible.builtin.debug:
-        msg: "{{ shell_output.stdout }}"
+        msg: "{{ shell_output }}"
       
       
     
