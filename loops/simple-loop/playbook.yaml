@@ -1,0 +1,12 @@
+ - name: gather facts
+   hosts: local
+   connection: local
+   tasks:
+    - name: loop 
+      ansible.builtin.debug:
+       msg: "Hello {{ item }}"
+      loop:
+        - Ramesh
+        - Suresh
+        - Rakesh
+        - Paramesh

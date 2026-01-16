@@ -1,0 +1,13 @@
+ - name: gather facts
+   hosts: local
+   connection: local
+   become: yes
+   tasks:
+    - name: installing multiple packages with loop 
+      ansible.builtin.package:
+       name: {{ item.name }}
+       state: {{ item.state }}
+      loop:
+        - { name: "nginx" ,state: "absent" }
+        - { name: "mysql" , state: "present" }
+        - { name: "python", state: "absent" }

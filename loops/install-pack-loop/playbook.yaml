@@ -1,0 +1,12 @@
+ - name: gather facts
+   hosts: local
+   connection: local
+   tasks:
+    - name: installing multiple packages with loop
+      ansible.builtin.package:
+       name: {{ item }}
+       state: latest
+      loop:
+        - nginx
+        - mysql
+        - python
