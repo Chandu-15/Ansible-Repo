@@ -35,8 +35,8 @@
         zone: "{{ zone_id }}"
         ttl: 1
         type: A
-        record: "{{ item .item }}.{{ domain_name }}"
-        value: "{ item.instances[0].public_ip_address }"
+        record: "{{ domain_name }}"
+        value: "{{ item.instances[0].public_ip_address }}"
         over_write: true
         when: item.item == "frontend"
         loop: "{{ ec2_output.results }}"
